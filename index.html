@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مكتب المستشار مصطفى زيدان للاستشارات القانونية</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f1ec;--card:#fff;--ink:#1c2230;--mut:#6b7385;--navy:#14213d;--gold:#a9822f;--line:#ddd8cc;--ok:#2f7d4f;--warn:#b26a00;--bad:#a63232;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141d;--card:#1a2030;--ink:#eceae3;--mut:#9aa3b8;--navy:#0b1224;--gold:#d3ab52;--line:#2a3247}}
+:root[data-theme="dark"]{--bg:#10141d;--card:#1a2030;--ink:#eceae3;--mut:#9aa3b8;--navy:#0b1224;--gold:#d3ab52;--line:#2a3247}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,Tahoma,sans-serif;line-height:1.7}
+header{background:var(--navy);color:#fff;padding:22px 16px;text-align:center;border-bottom:4px solid var(--gold)}
+header h1{font-family:Amiri,'Times New Roman',serif;font-size:1.7rem;margin:0;color:#fff}
+header p{margin:2px 0 0;color:#d9c48f;font-size:.95rem}
+main{max-width:860px;margin:0 auto;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 6px;text-align:center}
+.stat b{display:block;font-size:1.25rem;color:var(--gold)}
+.stat span{font-size:.78rem;color:var(--mut)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:16px}
+.panel h2{margin:0 0 10px;font-size:1.05rem;font-family:Amiri,serif}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.full{grid-column:1/-1}
+label{display:block;font-size:.85rem;color:var(--mut)}
+input,select,textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+textarea{min-height:70px;resize:vertical}
+button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:9px 16px;background:var(--navy);color:#fff}
+button.gold{background:var(--gold);color:#fff;font-weight:600}
+button.sm{padding:4px 10px;font-size:.8rem;background:transparent;color:var(--mut);border:1px solid var(--line)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.bar{display:flex;gap:8px;margin-bottom:10px}
+.item{border-top:1px solid var(--line);padding:12px 0}
+.item:first-child{border-top:0}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.top strong{font-size:1.02rem}
+.tag{font-size:.75rem;padding:1px 9px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.s-new{color:var(--warn)}.s-prog{color:var(--navy)}.s-done{color:var(--ok)}
+@media (prefers-color-scheme:dark){.s-prog{color:#9db4ff}}
+.meta{color:var(--mut);font-size:.85rem}
+.note{margin:4px 0 8px;font-size:.92rem}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.empty{text-align:center;color:var(--mut);padding:20px 0}
+@media (max-width:520px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<h1>المستشار مصطفى زيدان</h1>
+<p>للاستشارات القانونية</p>
+</header>
+<main>
+<div class="stats">
+<div class="stat"><b id="sTotal">0</b><span>إجمالي الاستشارات</span></div>
+<div class="stat"><b id="sNew">0</b><span>جديدة</span></div>
+<div class="stat"><b id="sProg">0</b><span>قيد الدراسة</span></div>
+<div class="stat"><b id="sFees">0</b><span>الأتعاب المحصّلة (ج.م)</span></div>
+</div>
+
+<section class="panel">
+<h2>استشارة جديدة</h2>
+<div class="grid">
+<div><label for="name">اسم العميل</label><input id="name"></div>
+<div><label for="phone">رقم الهاتف</label><input id="phone" type="tel" inputmode="tel"></div>
+<div><label for="type">نوع القضية</label>
+<select id="type"><option>مدني</option><option>جنائي</option><option>أحوال شخصية</option><option>تجاري</option><option>عقارات</option><option>عمالي</option><option>إداري</option><option>أخرى</option></select></div>
+<div><label for="date">تاريخ الاستشارة</label><input id="date" type="date"></div>
+<div><label for="fee">الأتعاب (ج.م)</label><input id="fee" type="number" min="0" inputmode="numeric"></div>
+<div><label for="paid">حالة الدفع</label><select id="paid"><option value="0">لم يُدفع</option><option value="1">مدفوع</option></select></div>
+<div class="full"><label for="notes">ملخص الموضوع والملاحظات</label><textarea id="notes"></textarea></div>
+<div class="full acts"><button class="gold" id="add">حفظ الاستشارة</button><button id="addwa">حفظ وإرسال على واتساب</button></div>
+</div>
+</section>
+
+<section class="panel">
+<h2>سجل الاستشارات</h2>
+<div class="bar">
+<input id="q" placeholder="ابحث بالاسم أو الهاتف أو الموضوع">
+<select id="f" style="max-width:130px"><option value="">الكل</option><option value="new">جديدة</option><option value="prog">قيد الدراسة</option><option value="done">منتهية</option></select>
+</div>
+<div id="list"></div>
+</section>
+</main>
+<script>
+const KEY='zidan-consults';
+let data=[];
+try{data=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){data=[]}
+const $=id=>document.getElementById(id);
+const L={new:'جديدة',prog:'قيد الدراسة',done:'منتهية'};
+const NEXT={new:'prog',prog:'done',done:'new'};
+$('date').value=new Date().toISOString().slice(0,10);
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){
+ $('sTotal').textContent=data.length;
+ $('sNew').textContent=data.filter(x=>x.st==='new').length;
+ $('sProg').textContent=data.filter(x=>x.st==='prog').length;
+ $('sFees').textContent=data.filter(x=>x.paid).reduce((a,x)=>a+(+x.fee||0),0).toLocaleString('ar-EG');
+ const q=$('q').value.trim().toLowerCase(),f=$('f').value;
+ const rows=data.filter(x=>(!f||x.st===f)&&(!q||(x.name+x.phone+x.notes+x.type).toLowerCase().includes(q)));
+ $('list').innerHTML=rows.length?rows.map(x=>`<div class="item"><div class="top"><strong>${esc(x.name)}</strong><span class="tag s-${x.st}">${L[x.st]}</span></div>
+<div class="meta">${esc(x.type)} · ${esc(x.date)} · ${esc(x.phone||'بدون هاتف')} · ${x.fee?esc(x.fee)+' ج.م ('+(x.paid?'مدفوع':'غير مدفوع')+')':'بدون أتعاب'}</div>
+${x.notes?`<div class="note">${esc(x.notes)}</div>`:''}
+<div class="acts"><button class="sm" onclick="nx(${x.id})">تغيير الحالة</button><button class="sm" onclick="wa(${x.id})">واتساب</button>${x.fee?`<button class="sm" onclick="pd(${x.id})">${x.paid?'إلغاء الدفع':'تسجيل الدفع'}</button>`:''}${x.phone?`<a href="tel:${esc(x.phone)}"><button class="sm">اتصال</button></a>`:''}<button class="sm" onclick="del(${x.id})">حذف</button></div></div>`).join(''):'<div class="empty">لا توجد استشارات بعد. أضف أول استشارة من النموذج أعلاه.</div>';
+}
+const WA='201024843846';
+function send(x){
+ const m='استشارة جديدة - مكتب المستشار مصطفى زيدان\nالعميل: '+x.name+'\nالهاتف: '+(x.phone||'-')+'\nنوع القضية: '+x.type+'\nالتاريخ: '+x.date+'\nالأتعاب: '+(x.fee?x.fee+' ج.م ('+(x.paid?'مدفوع':'غير مدفوع')+')':'-')+'\nالحالة: '+L[x.st]+'\nالملخص: '+(x.notes||'-');
+ window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(m),'_blank');
+}
+function wa(id){send(data.find(d=>d.id===id))}
+function addC(sendWa){
+ const name=$('name').value.trim();
+ if(!name){$('name').focus();alert('اكتب اسم العميل أولًا');return}
+ data.unshift({id:Date.now(),name,phone:$('phone').value.trim(),type:$('type').value,date:$('date').value,fee:$('fee').value,paid:$('paid').value==='1',notes:$('notes').value.trim(),st:'new'});
+ ['name','phone','fee','notes'].forEach(i=>$(i).value='');
+ save();render();
+ if(sendWa)send(data[0]);
+}
+$('add').onclick=()=>addC(false);
+$('addwa').onclick=()=>addC(true);
+function nx(id){const x=data.find(d=>d.id===id);x.st=NEXT[x.st];save();render()}
+function pd(id){const x=data.find(d=>d.id===id);x.paid=!x.paid;save();render()}
+function del(id){if(confirm('هل تريد حذف هذه الاستشارة؟')){data=data.filter(d=>d.id!==id);save();render()}}
+$('q').oninput=render;$('f').onchange=render;
+render();
+</script>
+</body>
+</html>
